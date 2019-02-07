@@ -64,7 +64,7 @@ public class QuartoBusinessImpl implements QuartoBusiness {
 	public Quarto update(Quarto quarto) throws BusinessExecption {
 
 		if (quarto.getCodQuarto() == null) {
-			throw new BusinessExecption("Descricao Requerida!"); // excessão disparada pela camada Business
+			throw new BusinessExecption("Codigo Requerido!"); // excessão disparada pela camada Business
 		}
 
 		// dado obrigatório, (objeto é Int)

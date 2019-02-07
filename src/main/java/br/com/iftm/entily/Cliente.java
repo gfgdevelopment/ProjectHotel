@@ -11,9 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity // persistencia
-@Table(name = "TB_CLIENTE")
+@Table(name = "TB_CLIENTE", uniqueConstraints = {
+		@UniqueConstraint(name = "UNQ_CLIENTE", columnNames = { "CPF_CLIENTE", "EMAIL_CLIENTE" }) })
 public class Cliente {
 
 	@Id // utilizado como chave primária
@@ -40,6 +42,7 @@ public class Cliente {
 	// relação Um pra Muitos
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "clientes", orphanRemoval = true, targetEntity = Telefone.class)
 	private Set<Telefone> telefones;
+	// relação Muitos pra Um
 
 	public Integer getCodigo() {
 		return codigo;
