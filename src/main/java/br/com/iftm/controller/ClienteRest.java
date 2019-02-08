@@ -66,6 +66,27 @@ public class ClienteRest {
 		}
 	}
 
+	// READ BY ID
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<?> readById(@PathVariable("id") Integer id) {
+
+		try {
+			Cliente readByName = business.readById(id);
+
+			if (readByName == null) {
+				return ResponseEntity.notFound().build();
+			}
+
+			return ResponseEntity.ok(readByName);
+		} catch (BusinessExecption e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body(e);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body(e);
+		}
+	}
+
 	/////////////////////////////////////////////////////////////////////////////////////////
 
 	// READ BY NAME

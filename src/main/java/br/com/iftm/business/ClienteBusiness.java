@@ -6,15 +6,17 @@ import br.com.iftm.entily.Cliente;
 
 public interface ClienteBusiness {
 
-	Cliente create(Cliente cliente) throws BusinessExecption;;
+	Cliente create(Cliente cliente) throws BusinessExecption;
 
-	List<Cliente> read() throws BusinessExecption;;
+	List<Cliente> read() throws BusinessExecption;
 
-	List<Cliente> readByName(String nome) throws BusinessExecption;;
+	Cliente readById(Integer id) throws BusinessExecption;
 
-	List<Cliente> readByCpf(String cpf) throws BusinessExecption;;
+	List<Cliente> readByName(String nome) throws BusinessExecption;
 
-	Cliente update(Cliente cliente) throws BusinessExecption;;
+	List<Cliente> readByCpf(String cpf) throws BusinessExecption;
 
-	void delete(Integer id) throws BusinessExecption;;
+	Cliente update(Cliente cliente) throws BusinessExecption;
+
+	void delete(Integer id) throws BusinessExecption;
 }

@@ -157,4 +157,16 @@ public class ClienteBusinessImpl implements ClienteBusiness {
 		dao.delete(id); // trata a parte de persistência (via interface)
 	}
 
+	@Override
+	@Transactional(readOnly = true) // exige que faça somente leitura (PESQUISA POR ID)
+	public Cliente readById(Integer id) throws BusinessExecption {
+
+		if (id == null) {
+
+			throw new BusinessExecption("Código Requerido!");
+		}
+
+		return dao.readById(id);
+	}
+
 }

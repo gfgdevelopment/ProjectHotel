@@ -2,12 +2,15 @@ package br.com.iftm.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.iftm.dao.QuartoDAO;
 import br.com.iftm.entily.Quarto;
+import br.com.iftm.enums.Status;
 
 @Repository
 public class QuartoDAOImpl implements QuartoDAO {
@@ -38,6 +41,29 @@ public class QuartoDAOImpl implements QuartoDAO {
 
 		// lista no banco
 		return sessionFactory.getCurrentSession().createCriteria(Quarto.class).list();
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@Override
+	public Quarto readById(Integer id) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Quarto.class);
+
+		criteria.add(Restrictions.eq("id", id));
+
+		return (Quarto) criteria.uniqueResult();
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@Override
+	public List<Quarto> readByStatus(Status status) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Quarto.class);
+		criteria.add(Restrictions.eq("status", status)); // busca por igualdade
+
+		return criteria.list();
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////

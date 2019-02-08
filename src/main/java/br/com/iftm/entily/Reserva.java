@@ -16,11 +16,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Type;
 
 @Entity // persistencia
-@Table(name = "TB_RESERVA")
+@Table(name = "TB_RESERVA", uniqueConstraints = {
+		@UniqueConstraint(name = "UNQ_RESERVA", columnNames = { "CODIGO_CLIENTE", "CODIGO_QUARTO" }) })
 public class Reserva {
 
 	@Id // utilizado como chave primária

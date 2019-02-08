@@ -12,6 +12,7 @@ import br.com.iftm.business.BusinessExecption;
 import br.com.iftm.business.QuartoBusiness;
 import br.com.iftm.dao.QuartoDAO;
 import br.com.iftm.entily.Quarto;
+import br.com.iftm.enums.Status;
 
 @Service
 @Transactional // serve para que ocorra a transação do programa com o banco
@@ -58,6 +59,31 @@ public class QuartoBusinessImpl implements QuartoBusiness {
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@Override
+	@Transactional(readOnly = true) // exige que faça somente leitura
+	public Quarto readById(Integer id) throws BusinessExecption {
+
+		if (id == null) {
+
+			throw new BusinessExecption("Código Requerido!");
+		}
+
+		return dao.readById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true) // exige que faça somente leitura
+	public List<Quarto> readByStatus(Status status) throws BusinessExecption {
+
+		// validação
+		if (status == null) {
+			throw new BusinessExecption("Status Requerido!"); // excessão disparada pela camada Business
+		}
+		return dao.readByStatus(status); // trata a parte de persistência (via interface)
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED) // exige que abre a transação e propaga para outros métodos

@@ -3,10 +3,9 @@ package br.com.iftm.business;
 import java.util.List;
 
 import br.com.iftm.entily.Quarto;
+import br.com.iftm.enums.Status;
 
 public interface QuartoBusiness {
-
-	// metodo de status
 
 	Quarto create(Quarto quarto) throws BusinessExecption;
 
@@ -14,6 +13,10 @@ public interface QuartoBusiness {
 	 * 
 	 */
 	List<Quarto> read() throws BusinessExecption;
+
+	Quarto readById(Integer id) throws BusinessExecption;
+
+	List<Quarto> readByStatus(Status status) throws BusinessExecption;;
 
 	/**
 	 * 
@@ -23,6 +26,7 @@ public interface QuartoBusiness {
 	/**
 	 * 
 	 */
+
 	void delete(Integer id) throws BusinessExecption;
 
 }

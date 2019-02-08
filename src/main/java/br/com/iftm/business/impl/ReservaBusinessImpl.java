@@ -43,6 +43,7 @@ public class ReservaBusinessImpl implements ReservaBusiness {
 		// if (reserva.getPagamentos() == null || reserva.getPagamentos().isEmpty()) {
 		// throw new BusinessExecption("Pelo menos um telefone Requerido!"); // possui
 		// chave estrangeira
+
 		// }
 
 		for (Pagamento pagamento : reserva.getPagamentos()) {

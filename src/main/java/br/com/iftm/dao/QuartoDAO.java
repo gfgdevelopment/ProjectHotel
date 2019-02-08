@@ -3,6 +3,7 @@ package br.com.iftm.dao;
 import java.util.List;
 
 import br.com.iftm.entily.Quarto;
+import br.com.iftm.enums.Status;
 
 public interface QuartoDAO {
 
@@ -22,6 +23,10 @@ public interface QuartoDAO {
 	 */
 	List<Quarto> read();
 
+	Quarto readById(Integer id);
+
+	List<Quarto> readByStatus(Status status);
+
 	/**
 	 * Método responsavel por persisitir (atualizar) na base de dados o objeto
 	 * 
@@ -36,6 +41,7 @@ public interface QuartoDAO {
 	 * 
 	 * @param id
 	 */
+
 	void delete(Integer id);
 
 }

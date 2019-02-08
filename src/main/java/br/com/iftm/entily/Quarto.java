@@ -3,6 +3,8 @@ package br.com.iftm.entily;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -11,9 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import br.com.iftm.enums.Status;
 
 @Entity // persistencia
-@Table(name = "TB_QUARTO")
+@Table(name = "TB_QUARTO", uniqueConstraints = {
+		@UniqueConstraint(name = "UNQ_QUARTO", columnNames = { "CODIGO_TIPOQUARTO", "NUMERO" }) })
 public class Quarto {
 
 	@Id // utilizado como chave primária
@@ -30,18 +36,19 @@ public class Quarto {
 
 	// mapeamento de atributos das classes com colunas no banco
 	@Column(name = "STATUS", nullable = false, length = 20)
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private Status status;
 
 	// relação Muitos pra Um
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = TipoQuarto.class)
 	@JoinColumn(name = "CODIGO_TIPOQUARTO", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "FK_TIPOQUARTO"))
 	private TipoQuarto tipoQuarto;
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

@@ -73,4 +73,14 @@ public class ClienteDAOImpl implements ClienteDAO {
 		sessionFactory.getCurrentSession().delete(excluiCliente);
 	}
 
+	@Override
+	public Cliente readById(Integer id) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Cliente.class);
+
+		criteria.add(Restrictions.eq("id", id));
+
+		return (Cliente) criteria.uniqueResult();
+	}
+
 }

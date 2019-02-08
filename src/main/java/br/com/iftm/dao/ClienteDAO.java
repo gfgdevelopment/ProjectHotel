@@ -10,6 +10,8 @@ public interface ClienteDAO {
 
 	List<Cliente> read();
 
+	Cliente readById(Integer id);
+
 	List<Cliente> readByName(String nome);
 
 	List<Cliente> readByCpf(String cpf);
